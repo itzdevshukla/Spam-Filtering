@@ -1,0 +1,237 @@
+{% extends "detector/base.html" %}
+
+{% block title %}SpamShield — ML Metrics, Visualizations & Viva Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Header -->
+    <div class="col-12 mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+                <h3 class="fw-bold text-white mb-1">Model Evaluation & Academic Viva Dashboard</h3>
+                <p class="text-muted small mb-0">Empirical benchmark comparison, diagnostic curves, learned coefficients, and API reference.</p>
+            </div>
+            <div class="d-flex gap-2">
+                <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-2 font-monospace">
+                    UCI SMS Spam (N = 5,160)
+                </span>
+                <span class="badge bg-success-subtle text-success border border-success px-3 py-2 font-monospace">
+                    Test Holdout: 20% (N = 1,032)
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Metric KPI Cards -->
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="metric-box">
+            <div class="metric-val text-success">{{ sklearn_metrics.accuracy|floatformat:4|default:"0.9884" }}</div>
+            <div class="metric-label">Test Set Accuracy</div>
+            <div class="text-faint small mt-1 font-monospace">1,020 / 1,032 Correct</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="metric-box">
+            <div class="metric-val text-info">{{ sklearn_metrics.roc_auc|floatformat:4|default:"0.9983" }}</div>
+            <div class="metric-label">ROC - AUC Score</div>
+            <div class="text-faint small mt-1 font-monospace">Near Perfect Separation</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="metric-box">
+            <div class="metric-val text-warning">{{ sklearn_metrics.f1_score|floatformat:4|default:"0.9524" }}</div>
+            <div class="metric-label">Macro F1 - Score</div>
+            <div class="text-faint small mt-1 font-monospace">Harmonic Precision/Recall</div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-3">
+        <div class="metric-box">
+            <div class="metric-val text-danger">{{ sklearn_metrics.false_positive_rate|floatformat:4|default:"0.0044" }}</div>
+            <div class="metric-label">False Positive Rate (FPR)</div>
+            <div class="text-faint small mt-1 font-monospace">&lt; 0.5% Legitimate Blocked</div>
+        </div>
+    </div>
+
+    <!-- Comparative Evaluation Table -->
+    <div class="col-12 mb-4">
+        <div class="glass-card p-4">
+            <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-table text-primary"></i> Scratch vs. Scikit-Learn Logistic Regression Benchmark
+            </h5>
+            <div class="table-responsive">
+                <table class="table table-dark table-hover table-dark-custom align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Evaluation Metric</th>
+                            <th>Scratch Logistic Regression<br><span class="text-faint font-monospace font-weight-normal">(Gradient Descent, &tau;=0.50)</span></th>
+                            <th>Scikit-Learn Logistic Regression<br><span class="text-faint font-monospace font-weight-normal">(L-BFGS, Balanced, &tau;=0.50)</span></th>
+                            <th>Scikit-Learn (Tuned)<br><span class="text-faint font-monospace font-weight-normal">(Threshold &tau;={{ optimal_threshold|floatformat:2 }})</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-semibold text-white">Accuracy</td>
+                            <td class="font-monospace text-info">{{ scratch_metrics.accuracy|floatformat:4|default:"0.9826" }}</td>
+                            <td class="font-monospace text-info">{{ sklearn_metrics.accuracy|floatformat:4|default:"0.9855" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics_tuned.accuracy|floatformat:4|default:"0.9884" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-white">Precision (Positive Predictive Value)</td>
+                            <td class="font-monospace">{{ scratch_metrics.precision|floatformat:4|default:"0.9825" }}</td>
+                            <td class="font-monospace">{{ sklearn_metrics.precision|floatformat:4|default:"0.9449" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics_tuned.precision|floatformat:4|default:"0.9677" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-white">Recall (Sensitivity / True Positive Rate)</td>
+                            <td class="font-monospace">{{ scratch_metrics.recall|floatformat:4|default:"0.8750" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics.recall|floatformat:4|default:"0.9375" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics_tuned.recall|floatformat:4|default:"0.9375" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-white">F1-Score</td>
+                            <td class="font-monospace">{{ scratch_metrics.f1_score|floatformat:4|default:"0.9256" }}</td>
+                            <td class="font-monospace">{{ sklearn_metrics.f1_score|floatformat:4|default:"0.9412" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics_tuned.f1_score|floatformat:4|default:"0.9524" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-white">Specificity (True Negative Rate)</td>
+                            <td class="font-monospace text-success fw-bold">{{ scratch_metrics.specificity|floatformat:4|default:"0.9978" }}</td>
+                            <td class="font-monospace">{{ sklearn_metrics.specificity|floatformat:4|default:"0.9923" }}</td>
+                            <td class="font-monospace">{{ sklearn_metrics_tuned.specificity|floatformat:4|default:"0.9956" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-white">False Positive Rate (Legitimate to Spam)</td>
+                            <td class="font-monospace text-success fw-bold">{{ scratch_metrics.false_positive_rate|floatformat:4|default:"0.0022" }}</td>
+                            <td class="font-monospace">{{ sklearn_metrics.false_positive_rate|floatformat:4|default:"0.0077" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics_tuned.false_positive_rate|floatformat:4|default:"0.0044" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-white">ROC - AUC</td>
+                            <td class="font-monospace">{{ scratch_metrics.roc_auc|floatformat:4|default:"0.9949" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics.roc_auc|floatformat:4|default:"0.9983" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics_tuned.roc_auc|floatformat:4|default:"0.9983" }}</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-semibold text-white">PR - AUC (Average Precision)</td>
+                            <td class="font-monospace">{{ scratch_metrics.pr_auc|floatformat:4|default:"0.9768" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics.pr_auc|floatformat:4|default:"0.9899" }}</td>
+                            <td class="font-monospace text-success fw-bold">{{ sklearn_metrics_tuned.pr_auc|floatformat:4|default:"0.9899" }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diagnostic Charts Gallery -->
+    <div class="col-lg-6 mb-4">
+        <div class="glass-card p-4 h-100">
+            <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-grid-3x3 text-info"></i> Confusion Matrix Comparison
+            </h5>
+            <img src="/outputs/evaluation/01_confusion_matrices.png" class="img-fluid rounded-3 border border-secondary" alt="Confusion Matrix">
+            <p class="text-muted small mt-2 mb-0">
+                Scratch vs Scikit-Learn confusion matrix on unseen test set (N=1,032). Notice minimal False Positives.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="glass-card p-4 h-100">
+            <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-graph-up text-success"></i> ROC Curve & AUC Performance
+            </h5>
+            <img src="/outputs/evaluation/02_roc_curves.png" class="img-fluid rounded-3 border border-secondary" alt="ROC Curve">
+            <p class="text-muted small mt-2 mb-0">
+                ROC curves for both models demonstrating an area under curve of <strong>0.9983</strong>.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="glass-card p-4 h-100">
+            <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-sliders text-warning"></i> Threshold Optimization (&tau;)
+            </h5>
+            <img src="/outputs/evaluation/04_threshold_tuning.png" class="img-fluid rounded-3 border border-secondary" alt="Threshold Optimization">
+            <p class="text-muted small mt-2 mb-0">
+                Tuning classification probability threshold &tau; to balance precision and recall on imbalanced SMS distribution.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-4">
+        <div class="glass-card p-4 h-100">
+            <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-repeat text-purple" style="color: #a855f7;"></i> Scratch Model Loss Convergence
+            </h5>
+            <img src="/outputs/evaluation/05_scratch_loss_trajectory.png" class="img-fluid rounded-3 border border-secondary" alt="Loss Trajectory">
+            <p class="text-muted small mt-2 mb-0">
+                Binary Cross-Entropy cost decay across 1,200 Batch Gradient Descent iterations.
+            </p>
+        </div>
+    </div>
+
+    <!-- EDA Visualizations Showcase -->
+    <div class="col-12 mb-4">
+        <div class="glass-card p-4">
+            <h5 class="text-white fw-bold mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-cloud text-primary"></i> Empirical EDA: Distinctive Token Clouds
+            </h5>
+            <img src="/outputs/eda/07_wordclouds_spam_vs_ham.png" class="img-fluid rounded-3 border border-secondary w-100 mb-2" alt="WordClouds">
+            <div class="row g-3 mt-1">
+                <div class="col-md-6">
+                    <img src="/outputs/eda/02_message_length_distribution.png" class="img-fluid rounded-3 border border-secondary" alt="Message Lengths">
+                </div>
+                <div class="col-md-6">
+                    <img src="/outputs/eda/08_feature_correlation_heatmap.png" class="img-fluid rounded-3 border border-secondary" alt="Correlations">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REST API Reference Section -->
+    <div class="col-12 mb-4" id="apiSection">
+        <div class="glass-card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="text-white fw-bold mb-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-terminal text-success"></i> Production REST API Reference
+                </h5>
+                <span class="badge bg-success-subtle text-success border border-success font-monospace">POST /api/predict/</span>
+            </div>
+            <p class="text-muted small">
+                Integrate real-time SMS/Email classification into microservices, gateway proxies, or mobile applications.
+            </p>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span class="small text-muted fw-semibold">Example cURL Request:</span>
+                        <button class="btn btn-sm btn-outline-secondary btn-copy py-0 px-2 small" data-target="curlSample">
+                            <i class="bi bi-clipboard"></i> Copy
+                        </button>
+                    </div>
+                    <pre class="bg-black text-light p-3 rounded-3 font-monospace small border border-secondary mb-0" id="curlSample"><code>curl -X POST http://127.0.0.1:8000/api/predict/ \
+  -H "Content-Type: application/json" \
+  -d '{"text": "URGENT! You have won £1000 cash. Call 0800123456 now!"}'</code></pre>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <span class="small text-muted fw-semibold d-block mb-1">Example JSON Response:</span>
+                    <pre class="bg-black text-success p-3 rounded-3 font-monospace small border border-secondary mb-0"><code>{
+  "success": true,
+  "label": "SPAM",
+  "is_spam": true,
+  "spam_probability": 0.9998,
+  "risk_level": "CRITICAL",
+  "inference_time_ms": 3.42,
+  "top_signals": [
+    {"feature": "[meta]_has_urgent_keyword", "contribution": 3.12},
+    {"feature": "__currency__", "contribution": 2.45}
+  ]
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

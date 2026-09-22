@@ -1,0 +1,134 @@
+{
+  "project": "SpamShield \u2014 Intelligent Spam Message Filtering System",
+  "algorithm": "Logistic Regression (Binary Classification: ham=0, spam=1)",
+  "training_timestamp": "2026-09-23T01:13:30.936507",
+  "train_samples": 4128,
+  "test_samples": 1032,
+  "optimal_threshold": 0.6,
+  "scratch_metrics": {
+    "accuracy": 0.9825581395348837,
+    "precision": 0.9824561403508771,
+    "recall": 0.875,
+    "f1_score": 0.9256198347107438,
+    "specificity": 0.9977876106194691,
+    "false_positive_rate": 0.0022123893805309734,
+    "roc_auc": 0.994944344579646,
+    "pr_auc": 0.9768231446823488,
+    "true_positives": 112,
+    "false_positives": 2,
+    "true_negatives": 902,
+    "false_negatives": 16
+  },
+  "sklearn_metrics": {
+    "accuracy": 0.9854651162790697,
+    "precision": 0.9448818897637795,
+    "recall": 0.9375,
+    "f1_score": 0.9411764705882353,
+    "specificity": 0.9922566371681416,
+    "false_positive_rate": 0.007743362831858407,
+    "roc_auc": 0.9982974972345132,
+    "pr_auc": 0.9898764417904309,
+    "true_positives": 120,
+    "false_positives": 7,
+    "true_negatives": 897,
+    "false_negatives": 8
+  },
+  "sklearn_metrics_tuned": {
+    "accuracy": 0.9883720930232558,
+    "precision": 0.967741935483871,
+    "recall": 0.9375,
+    "f1_score": 0.9523809523809523,
+    "specificity": 0.995575221238938,
+    "false_positive_rate": 0.004424778761061947,
+    "roc_auc": 0.9982974972345132,
+    "pr_auc": 0.9898764417904309,
+    "true_positives": 120,
+    "false_positives": 4,
+    "true_negatives": 900,
+    "false_negatives": 8
+  },
+  "top_spam_indicators": [
+    [
+      "text",
+      3.5473808983305735
+    ],
+    [
+      "ringtone",
+      3.506910548718576
+    ],
+    [
+      "brought",
+      3.3501260435499174
+    ],
+    [
+      "sms",
+      3.2434001435388398
+    ],
+    [
+      "mobile",
+      3.1651836328087564
+    ],
+    [
+      "u text",
+      2.8905134075807384
+    ],
+    [
+      "service",
+      2.8781732601949397
+    ],
+    [
+      "girls",
+      2.8531520742717187
+    ],
+    [
+      "arsenal",
+      2.7582213014211967
+    ],
+    [
+      "new",
+      2.672850712661021
+    ]
+  ],
+  "top_ham_indicators": [
+    [
+      "pls",
+      -0.7908324211202074
+    ],
+    [
+      "don",
+      -0.8016003934023455
+    ],
+    [
+      "d",
+      -0.8646481613504423
+    ],
+    [
+      "im",
+      -0.8988639698417427
+    ],
+    [
+      "home",
+      -0.928536018279585
+    ],
+    [
+      "sorry",
+      -0.9295833260137051
+    ],
+    [
+      "think",
+      -0.9325029470223644
+    ],
+    [
+      "want",
+      -0.9493684237186949
+    ],
+    [
+      "hope",
+      -1.0119341824741397
+    ],
+    [
+      "hey",
+      -1.204672360583749
+    ]
+  ]
+}

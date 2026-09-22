@@ -1,0 +1,109 @@
+{% extends "detector/base.html" %}
+
+{% block title %}SpamShield — Prediction Audit Log{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <div>
+                <h3 class="fw-bold text-white mb-1">Prediction Audit History</h3>
+                <p class="text-muted small mb-0">Persistent audit record of real-time SMS & message queries processed by the model.</p>
+            </div>
+            <div class="d-flex gap-2">
+                {% if logs %}
+                <form method="POST" action="{% url 'clear_history' %}" onsubmit="return confirm('Clear all logged prediction records?');">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-trash me-1"></i> Clear Audit Log
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Metrics Strip -->
+        <div class="row g-2 mb-4">
+            <div class="col-sm-4">
+                <div class="metric-box">
+                    <div class="metric-val text-white">{{ total_logged }}</div>
+                    <div class="metric-label">Total Predictions Logged</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="metric-box">
+                    <div class="metric-val text-danger">{{ spam_logged }}</div>
+                    <div class="metric-label">Identified Spam</div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="metric-box">
+                    <div class="metric-val text-success">{{ ham_logged }}</div>
+                    <div class="metric-label">Verified Legitimate Ham</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="glass-card p-4">
+            {% if logs %}
+            <div class="table-responsive">
+                <table class="table table-dark table-hover table-dark-custom align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th style="width: 170px;">Timestamp (UTC)</th>
+                            <th style="width: 120px;">Classification</th>
+                            <th style="width: 130px;">Spam Prob</th>
+                            <th style="width: 110px;">Risk Level</th>
+                            <th>Message Text</th>
+                            <th style="width: 100px;">Latency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for log in logs %}
+                        <tr>
+                            <td class="text-faint small font-monospace">
+                                {{ log.created_at|date:"Y-m-d H:i:s" }}
+                            </td>
+                            <td>
+                                <span class="badge {% if log.predicted_label == 'SPAM' %}bg-danger-subtle text-danger border border-danger{% else %}bg-success-subtle text-success border border-success{% endif %}">
+                                    {{ log.predicted_label }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <span class="small font-monospace {% if log.predicted_label == 'SPAM' %}text-danger{% else %}text-success{% endif %} fw-semibold">
+                                        {{ log.spam_probability|floatformat:1 }}%
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge {% if log.risk_level == 'CRITICAL' %}bg-danger{% elif log.risk_level == 'SUSPICIOUS' %}bg-warning text-dark{% else %}bg-success{% endif %}">
+                                    {{ log.risk_level }}
+                                </span>
+                            </td>
+                            <td class="small text-muted text-break">
+                                {{ log.text|truncatechars:100 }}
+                            </td>
+                            <td class="small text-info font-monospace">
+                                {{ log.inference_time_ms|floatformat:1 }} ms
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="bi bi-clock-history display-4 text-secondary mb-3 d-inline-block opacity-50"></i>
+                <h5 class="text-white fw-semibold">Audit Log is Empty</h5>
+                <p class="text-muted small">Perform live analyses on the home page to start accumulating prediction logs.</p>
+                <a href="{% url 'index' %}" class="btn btn-sm btn-gradient mt-2">
+                    <i class="bi bi-play me-1"></i> Go to Live Analyzer
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
