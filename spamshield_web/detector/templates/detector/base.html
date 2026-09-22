@@ -4,127 +4,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}SpamShield // Spidey-Sense Radar — Dev Shukla{% endblock %}</title>
+    <title>{% block title %}SPIDERSHIELD — AI-Powered Message Cyber Defense{% endblock %}</title>
+    <meta name="description" content="SpiderShield is an AI-powered cybersecurity defense platform detecting spam, phishing, and scam payloads in real-time with Logistic Regression and NLP.">
     <!-- Google Fonts: Orbitron, Rajdhani, Outfit, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&family=Outfit:wght@400;500;600;700;800&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS & Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Spider-Man Cyber HUD Custom Stylesheet -->
-    <link rel="stylesheet" href="{% static 'detector/css/styles.css' %}?v=4.1">
+    <!-- SpiderShield Theme Stylesheet -->
+    <link rel="stylesheet" href="{% static 'detector/css/styles.css' %}?v=5.0">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <!-- Top Animated Spidey-Sense Pulse Stream -->
-    <div style="height: 3px; background: linear-gradient(90deg, #ff003c, #00f0ff, #ffb703, #ff003c); background-size: 300% 100%; animation: scanLaser 3s linear infinite; box-shadow: 0 0 15px #ff003c;"></div>
+    <!-- Subtle Spider-Web Canvas / SVG Background Layer -->
+    <div class="spider-web-mesh-layer" aria-hidden="true">
+        <svg class="spider-web-svg" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="webCenterGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#E10600" stop-opacity="0.12"/>
+                    <stop offset="40%" stop-color="#0A84FF" stop-opacity="0.06"/>
+                    <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+                </radialGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#webCenterGlow)"/>
+            <g stroke="rgba(255, 255, 255, 0.04)" stroke-width="1" fill="none">
+                <!-- Radial spokes -->
+                <line x1="500" y1="500" x2="500" y2="0"/>
+                <line x1="500" y1="500" x2="853" y2="147"/>
+                <line x1="500" y1="500" x2="1000" y2="500"/>
+                <line x1="500" y1="500" x2="853" y2="853"/>
+                <line x1="500" y1="500" x2="500" y2="1000"/>
+                <line x1="500" y1="500" x2="147" y2="853"/>
+                <line x1="500" y1="500" x2="0" y2="500"/>
+                <line x1="500" y1="500" x2="147" y2="147"/>
+                <line x1="500" y1="500" x2="723" y2="50"/>
+                <line x1="500" y1="500" x2="950" y2="277"/>
+                <line x1="500" y1="500" x2="950" y2="723"/>
+                <line x1="500" y1="500" x2="723" y2="950"/>
+                <line x1="500" y1="500" x2="277" y2="950"/>
+                <line x1="500" y1="500" x2="50" y2="723"/>
+                <line x1="500" y1="500" x2="50" y2="277"/>
+                <line x1="500" y1="500" x2="277" y2="50"/>
+                <!-- Curved concentric web rings -->
+                <circle cx="500" cy="500" r="70"/>
+                <circle cx="500" cy="500" r="140"/>
+                <circle cx="500" cy="500" r="220"/>
+                <circle cx="500" cy="500" r="310"/>
+                <circle cx="500" cy="500" r="410"/>
+                <circle cx="500" cy="500" r="520"/>
+                <circle cx="500" cy="500" r="640"/>
+            </g>
+        </svg>
+    </div>
 
-    <!-- Top Navbar -->
-    <nav class="navbar navbar-expand-xl navbar-spiderman sticky-top">
-        <div class="container-fluid px-3 px-xl-5">
-            <!-- Brand with High-Tech Spider Emblem -->
-            <a class="navbar-brand d-flex align-items-center gap-3 me-3 me-xxl-4" href="{% url 'index' %}">
-                <div class="spidey-avatar-wrap">
-                    <img src="{% static 'detector/images/spiderman_emblem.jpg' %}" alt="Spider-Man Emblem" class="spidey-nav-avatar">
-                </div>
-                <div class="d-flex flex-column">
-                    <span class="spidey-title">SPAMSHIELD</span>
-                    <span class="spidey-subtitle">SPIDEY-SENSE PROTOCOL &bull; DEV SHUKLA</span>
-                </div>
-            </a>
-            
-            <!-- Mobile Toggler -->
-            <button class="navbar-toggler custom-spidey-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list fs-2 text-danger"></i>
-            </button>
+    <!-- Top Neon Scanning Line -->
+    <div class="top-neon-scan-line"></div>
 
-            <!-- Collapsible Nav & Tools -->
-            <div class="collapse navbar-collapse" id="navContent">
-                <!-- Navigation Tabs -->
-                <ul class="navbar-nav me-auto mb-3 mb-xl-0 d-flex flex-column flex-xl-row gap-1 gap-xxl-2">
-                    <li class="nav-item">
-                        <a class="nav-link-spidey {% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">
-                            <i class="bi bi-radar"></i>
-                            <span>Radar Intercept</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link-spidey {% if request.resolver_match.url_name == 'batch' %}active{% endif %}" href="{% url 'batch' %}">
-                            <i class="bi bi-layers-fill"></i>
-                            <span>Batch Scanner</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link-spidey {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">
-                            <i class="bi bi-cpu-fill"></i>
-                            <span>ML Benchmark</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link-spidey {% if request.resolver_match.url_name == 'history' %}active{% endif %}" href="{% url 'history' %}">
-                            <i class="bi bi-shield-check"></i>
-                            <span>Intercept Logs</span>
-                        </a>
-                    </li>
-                </ul>
+    <!-- Sticky Glassy Navbar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-spidershield fixed-top" id="mainNavbar">
+            <div class="container-fluid px-3 px-lg-5">
+                <!-- Left Brand -->
+                <a class="navbar-brand spidershield-brand d-flex align-items-center gap-2" href="{% url 'index' %}#hero">
+                    <span class="spidershield-brand-icon">🕷</span>
+                    <span class="spidershield-brand-name">SPIDERSHIELD</span>
+                </a>
 
-                <!-- Telemetry Pill -->
-                <div class="d-flex align-items-center mt-3 mt-xl-0">
-                    <div class="spidey-hud-status-pill">
-                        <div class="spidey-equalizer">
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
+                <!-- Mobile Hamburger Toggler -->
+                <button class="navbar-toggler spidershield-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#spidershieldNav" aria-controls="spidershieldNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navigation Links & Status -->
+                <div class="collapse navbar-collapse" id="spidershieldNav">
+                    <ul class="navbar-nav mx-auto mb-3 mb-lg-0 spidershield-nav-links">
+                        <li class="nav-item">
+                            <a class="nav-link nav-scroll-link" href="{% if request.resolver_match.url_name == 'index' %}#hero{% else %}{% url 'index' %}#hero{% endif %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-scroll-link" href="{% if request.resolver_match.url_name == 'index' %}#scanner{% else %}{% url 'index' %}#scanner{% endif %}">Scanner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-scroll-link" href="{% if request.resolver_match.url_name == 'index' %}#how-it-works{% else %}{% url 'index' %}#how-it-works{% endif %}">How It Works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-scroll-link" href="{% if request.resolver_match.url_name == 'index' %}#spidey-sense{% else %}{% url 'index' %}#spidey-sense{% endif %}">Spidey Sense</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-scroll-link" href="{% if request.resolver_match.url_name == 'index' %}#model{% else %}{% url 'index' %}#model{% endif %}">Model</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-scroll-link" href="{% if request.resolver_match.url_name == 'index' %}#about{% else %}{% url 'index' %}#about{% endif %}">About</a>
+                        </li>
+                        <!-- Tools Dropdown for Batch, Dashboard & Logs -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-info-emphasis" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Tools
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-glass-menu border-secondary-subtle">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 {% if request.resolver_match.url_name == 'batch' %}active{% endif %}" href="{% url 'batch' %}">
+                                        <i class="bi bi-layers-fill text-info"></i> Batch CSV Scanner
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}" href="{% url 'dashboard' %}">
+                                        <i class="bi bi-cpu-fill text-warning"></i> ML Benchmark & ROC
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 {% if request.resolver_match.url_name == 'history' %}active{% endif %}" href="{% url 'history' %}">
+                                        <i class="bi bi-shield-check text-success"></i> Intercept Audit Logs
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <!-- Right Telemetry Badge -->
+                    <div class="d-flex align-items-center spidershield-telemetry-badge">
+                        <div class="status-indicator">
+                            <span class="pulsing-green-dot"></span>
                         </div>
-                        <span class="status-name">SPIDEY-SENSE:</span>
-                        <span class="status-badge-online">ONLINE</span>
-                        <span class="status-sep">&bull;</span>
-                        <span class="status-acc">98.84% ACC</span>
+                        <div class="d-flex flex-column text-end">
+                            <span class="telemetry-title">AI PROTECTED</span>
+                            <span class="telemetry-status">● ONLINE</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <!-- Main Page Content -->
-    <main class="flex-grow-1 py-4">
-        <div class="container-fluid px-lg-5">
-            {% block content %}{% endblock %}
-        </div>
+    <!-- Main Content Area -->
+    <main class="spidershield-main-container">
+        {% block content %}{% endblock %}
     </main>
 
-    <!-- Solo Footer -->
-    <footer class="spidey-footer">
-        <div class="container-fluid px-lg-5">
+    <!-- Professional SpiderShield Footer -->
+    <footer class="spidershield-footer mt-auto">
+        <div class="container-fluid px-3 px-lg-5 py-4">
             <div class="row align-items-center gy-3">
-                <div class="col-lg-6 text-center text-lg-start">
-                    <div class="fw-bold text-white fs-5" style="font-family: var(--font-hero); letter-spacing: 1px;">
-                        SPAMSHIELD &bull; SPIDEY-SENSE PROTOCOL
+                <div class="col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+                        <span class="fs-5">🕷</span>
+                        <span class="fw-bold text-white fs-6 font-orbitron" style="letter-spacing: 1.5px;">SPIDERSHIELD</span>
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-0 small font-mono">v2.4 PRO</span>
                     </div>
-                    <div class="text-muted small mt-1">
-                        Engineered by <strong>Dev Shukla</strong> &bull; 
-                        Primary Algorithm: <strong>Logistic Regression (Scratch + Scikit-Learn)</strong> &bull; 
-                        Primary Dataset: <strong>UCI SMS Spam Collection</strong>
-                    </div>
+                    <p class="text-secondary small mb-0">
+                        Autonomous Cyber-Arachnid perimeter defense engineered with <strong>Logistic Regression</strong> & NLP &bull; Designed & Built by <strong>Dev Shukla</strong>
+                    </p>
                 </div>
-                <div class="col-lg-6 text-center text-lg-end">
-                    <span class="badge bg-dark border border-danger text-light px-3 py-2 font-monospace">
-                        Python 3.10 &bull; Django 5.2 &bull; Vectorized Gradient Descent &bull; Bootstrap 5
-                    </span>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="d-flex flex-wrap justify-content-center justify-content-md-end align-items-center gap-3">
+                        <span class="text-secondary small font-mono">
+                            <i class="bi bi-cpu text-info me-1"></i> < 3ms Inference
+                        </span>
+                        <span class="text-secondary small font-mono">
+                            <i class="bi bi-shield-lock text-danger me-1"></i> 98.84% Test Acc
+                        </span>
+                        <span class="text-muted small">
+                            SPIDERSHIELD &copy; 2026
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Spider Web Background Matrix Canvas -->
-    <script src="{% static 'detector/js/spider_canvas.js' %}?v=3.0"></script>
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom Interactions -->
-    <script src="{% static 'detector/js/main.js' %}?v=3.0"></script>
+    <!-- Custom SpiderShield JavaScript -->
+    <script src="{% static 'detector/js/main.js' %}?v=5.0"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -70,10 +70,13 @@ def index(request):
         },
     ]
 
+    metadata = get_model_metadata()
     context = {
         "result": result,
         "input_text": input_text,
         "presets": presets,
+        "metadata": metadata,
+        "metrics": metadata.get("sklearn_metrics_tuned", metadata.get("sklearn_metrics", {})),
     }
     return render(request, "detector/index.html", context)
 
@@ -227,6 +230,20 @@ def api_predict(request):
         return JsonResponse({"error": "Field 'text' is required."}, status=400)
 
     result = explain_prediction(text)
+
+    # Persist to database log for audit trail
+    try:
+        PredictionLog.objects.create(
+            text=text,
+            predicted_label=result["label"],
+            spam_probability=result["spam_probability"],
+            risk_level=result["risk_level"],
+            top_contributing_tokens=result["all_contributions"][:6],
+            inference_time_ms=result["inference_time_ms"],
+        )
+    except Exception as e:
+        print(f"[Warning] Failed to log API prediction: {e}")
+
     return JsonResponse({
         "success": True,
         "text": text,
@@ -234,8 +251,13 @@ def api_predict(request):
         "is_spam": result["is_spam"],
         "spam_probability": result["spam_probability"],
         "ham_probability": result["ham_probability"],
+        "spam_percentage": result.get("spam_percentage", round(result["spam_probability"] * 100, 1)),
+        "ham_percentage": result.get("ham_percentage", round(result["ham_probability"] * 100, 1)),
         "risk_level": result["risk_level"],
         "inference_time_ms": result["inference_time_ms"],
+        "optimal_threshold": result.get("optimal_threshold", 0.35),
+        "spam_drivers": result.get("spam_drivers", []),
+        "ham_drivers": result.get("ham_drivers", []),
         "top_signals": result["all_contributions"][:6],
     })
 
