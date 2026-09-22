@@ -1,5 +1,5 @@
-# 🛡️ SpamShield — Intelligent Spam Message Filtering System
-### Production-Grade Academic Machine Learning & NLP System using Logistic Regression + Django
+# 🛡️ SpamShield — Sentinel Shield Edition (Architect: Harsh)
+### Academic Machine Learning & NLP System using Logistic Regression | Author: Harsh
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Django 5.2](https://img.shields.io/badge/Django-5.2-092E20.svg)](https://www.djangoproject.com/)

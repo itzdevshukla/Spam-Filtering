@@ -42,31 +42,31 @@ def index(request):
             except Exception as e:
                 print(f"[Warning] Failed to log prediction: {e}")
 
-    # Presets for instant testing in viva
+    # Presets for instant testing in viva (Captain America Sentinel Edition)
     presets = [
         {
-            "title": "❤️ Aunt May Dinner SMS (Clean Ham)",
+            "title": "⭐ Steve Rogers Memo to Bucky (Clean Ham)",
             "badge": "Safe Ham",
             "badge_color": "success",
-            "text": "Hey Peter, don't forget to pick up eggs on your way back from the library. Dinner is at 7:30! Love you.",
+            "text": "Bucky, meeting at the Brooklyn gym at 0800 hours. Don't forget your training gear. Cap out.",
         },
         {
-            "title": "📰 Daily Bugle Cash Draw (Classic Spam)",
+            "title": "🚨 Hydra Cash Syndicate Lottery (Critical Threat)",
             "badge": "Threat Spam",
             "badge_color": "danger",
-            "text": "URGENT! You have won £50000 cash prize or a holiday voucher! Call 08718726270 NOW to claim your guaranteed reward. T&C apply.",
+            "text": "URGENT! You have been selected for £50000 cash reward or luxury holiday voucher! Call 08718726270 NOW to claim your prize immediately.",
         },
         {
-            "title": "⚡ Oscorp Security Breach (Critical Phishing)",
+            "title": "⚠️ Rogue S.H.I.E.L.D. Server Override (Phishing Alert)",
             "badge": "Phishing Alert",
             "badge_color": "danger",
-            "text": "ALERT: Your Oscorp bank account #4928 is temporarily restricted due to suspicious logins. Verify immediately at http://secure-bank-login.xyz/verify",
+            "text": "SECURITY ALERT: S.H.I.E.L.D. mainframe credentials expired. Confirm Level 7 token immediately at http://secure-shield-auth.xyz/login to prevent lockdown.",
         },
         {
-            "title": "🎓 Peter & Ned Leeds Project Chat (Clean Ham)",
+            "title": "🛡️ Nick Fury Avengers Briefing (Clean Ham)",
             "badge": "Safe Ham",
             "badge_color": "success",
-            "text": "Hey man, did you finish training the Logistic Regression model for our physics lab? Bring the notebook tomorrow!",
+            "text": "Captain, review the Logistic Regression classification telemetry before tomorrow's council briefing. Solid work on the 98.8% benchmark.",
         },
     ]
 

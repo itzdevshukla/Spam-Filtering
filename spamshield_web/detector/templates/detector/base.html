@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}SpamShield // Spidey-Sense Radar — Dev Shukla{% endblock %}</title>
+    <title>{% block title %}SpamShield // Sentinel Shield Defense — Harsh{% endblock %}</title>
     <!-- Google Fonts: Orbitron, Rajdhani, Outfit, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,31 +12,37 @@
     <!-- Bootstrap 5 CSS & Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Spider-Man Cyber HUD Custom Stylesheet -->
-    <link rel="stylesheet" href="{% static 'detector/css/styles.css' %}?v=4.1">
+    <!-- Captain America Sentinel Cyber HUD Custom Stylesheet -->
+    <link rel="stylesheet" href="{% static 'detector/css/styles.css' %}?v=5.0">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <!-- Top Animated Spidey-Sense Pulse Stream -->
-    <div style="height: 3px; background: linear-gradient(90deg, #ff003c, #00f0ff, #ffb703, #ff003c); background-size: 300% 100%; animation: scanLaser 3s linear infinite; box-shadow: 0 0 15px #ff003c;"></div>
+    <!-- Top Animated Sentinel Shield Pulse Stream -->
+    <div style="height: 3px; background: linear-gradient(90deg, #dc2626, #2563eb, #ffffff, #dc2626); background-size: 300% 100%; animation: scanLaser 3s linear infinite; box-shadow: 0 0 15px rgba(37, 99, 235, 0.8);"></div>
 
     <!-- Top Navbar -->
     <nav class="navbar navbar-expand-xl navbar-spiderman sticky-top">
         <div class="container-fluid px-3 px-xl-5">
-            <!-- Brand with High-Tech Spider Emblem -->
+            <!-- Brand with Vibranium Star Shield Emblem -->
             <a class="navbar-brand d-flex align-items-center gap-3 me-3 me-xxl-4" href="{% url 'index' %}">
-                <div class="spidey-avatar-wrap">
-                    <img src="{% static 'detector/images/spiderman_emblem.jpg' %}" alt="Spider-Man Emblem" class="spidey-nav-avatar">
+                <div class="spidey-avatar-wrap d-flex align-items-center justify-content-center" style="background: radial-gradient(circle, #002b80 40%, #001540 100%); border: 1.5px solid #2563eb; box-shadow: 0 0 15px rgba(37,99,235,0.6);">
+                    <svg width="28" height="28" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="48" fill="#dc2626" />
+                        <circle cx="50" cy="50" r="38" fill="#e2e8f0" />
+                        <circle cx="50" cy="50" r="28" fill="#dc2626" />
+                        <circle cx="50" cy="50" r="18" fill="#1d4ed8" />
+                        <polygon points="50,36 53.5,45 63,45 55.5,50.5 58.5,60 50,54.5 41.5,60 44.5,50.5 37,45 46.5,45" fill="#ffffff" />
+                    </svg>
                 </div>
                 <div class="d-flex flex-column">
-                    <span class="spidey-title">SPAMSHIELD</span>
-                    <span class="spidey-subtitle">SPIDEY-SENSE PROTOCOL &bull; DEV SHUKLA</span>
+                    <span class="spidey-title" style="background: linear-gradient(135deg, #ffffff 0%, #93c5fd 50%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">SPAMSHIELD</span>
+                    <span class="spidey-subtitle" style="color: #60a5fa; text-shadow: 0 0 8px #2563eb;">SENTINEL SHIELD PROTOCOL &bull; HARSH</span>
                 </div>
             </a>
             
             <!-- Mobile Toggler -->
             <button class="navbar-toggler custom-spidey-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="bi bi-list fs-2 text-danger"></i>
+                <i class="bi bi-list fs-2 text-primary"></i>
             </button>
 
             <!-- Collapsible Nav & Tools -->
@@ -45,7 +51,7 @@
                 <ul class="navbar-nav me-auto mb-3 mb-xl-0 d-flex flex-column flex-xl-row gap-1 gap-xxl-2">
                     <li class="nav-item">
                         <a class="nav-link-spidey {% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">
-                            <i class="bi bi-radar"></i>
+                            <i class="bi bi-shield-shaded"></i>
                             <span>Radar Intercept</span>
                         </a>
                     </li>
@@ -63,7 +69,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link-spidey {% if request.resolver_match.url_name == 'history' %}active{% endif %}" href="{% url 'history' %}">
-                            <i class="bi bi-shield-check"></i>
+                            <i class="bi bi-journal-text"></i>
                             <span>Intercept Logs</span>
                         </a>
                     </li>
@@ -71,16 +77,16 @@
 
                 <!-- Telemetry Pill -->
                 <div class="d-flex align-items-center mt-3 mt-xl-0">
-                    <div class="spidey-hud-status-pill">
+                    <div class="spidey-hud-status-pill" style="border-color: rgba(37,99,235,0.45); box-shadow: 0 0 15px rgba(37,99,235,0.25);">
                         <div class="spidey-equalizer">
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
+                            <div class="eq-bar" style="background: #2563eb;"></div>
+                            <div class="eq-bar" style="background: #e2e8f0;"></div>
+                            <div class="eq-bar" style="background: #dc2626;"></div>
+                            <div class="eq-bar" style="background: #2563eb;"></div>
+                            <div class="eq-bar" style="background: #60a5fa;"></div>
                         </div>
-                        <span class="status-name">SPIDEY-SENSE:</span>
-                        <span class="status-badge-online">ONLINE</span>
+                        <span class="status-name">SENTINEL SHIELD:</span>
+                        <span class="status-badge-online" style="color: #60a5fa; text-shadow: 0 0 8px #2563eb;">ARMED</span>
                         <span class="status-sep">&bull;</span>
                         <span class="status-acc">98.84% ACC</span>
                     </div>
@@ -97,21 +103,21 @@
     </main>
 
     <!-- Solo Footer -->
-    <footer class="spidey-footer">
+    <footer class="spidey-footer" style="border-top-color: rgba(37,99,235,0.4);">
         <div class="container-fluid px-lg-5">
             <div class="row align-items-center gy-3">
                 <div class="col-lg-6 text-center text-lg-start">
                     <div class="fw-bold text-white fs-5" style="font-family: var(--font-hero); letter-spacing: 1px;">
-                        SPAMSHIELD &bull; SPIDEY-SENSE PROTOCOL
+                        SPAMSHIELD &bull; SENTINEL SHIELD PROTOCOL
                     </div>
                     <div class="text-muted small mt-1">
-                        Engineered by <strong>Dev Shukla</strong> &bull; 
+                        Engineered by <strong>Harsh</strong> &bull; 
                         Primary Algorithm: <strong>Logistic Regression (Scratch + Scikit-Learn)</strong> &bull; 
                         Primary Dataset: <strong>UCI SMS Spam Collection</strong>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center text-lg-end">
-                    <span class="badge bg-dark border border-danger text-light px-3 py-2 font-monospace">
+                    <span class="badge bg-dark border border-primary text-light px-3 py-2 font-monospace">
                         Python 3.10 &bull; Django 5.2 &bull; Vectorized Gradient Descent &bull; Bootstrap 5
                     </span>
                 </div>
