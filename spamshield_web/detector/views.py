@@ -42,31 +42,31 @@ def index(request):
             except Exception as e:
                 print(f"[Warning] Failed to log prediction: {e}")
 
-    # Presets for instant testing in viva
+    # Presets for instant testing in viva (Iron Man Stark-Tech Edition)
     presets = [
         {
-            "title": "❤️ Aunt May Dinner SMS (Clean Ham)",
+            "title": "⚡ Tony Stark Memo to Pepper Potts (Clean Ham)",
             "badge": "Safe Ham",
             "badge_color": "success",
-            "text": "Hey Peter, don't forget to pick up eggs on your way back from the library. Dinner is at 7:30! Love you.",
+            "text": "Pepper, finishing calibration on the Mark-85 Logistic Regression telemetry. Meeting with the board at 3 PM. Love you 3000.",
         },
         {
-            "title": "📰 Daily Bugle Cash Draw (Classic Spam)",
+            "title": "🚨 Hammer Industries Cash Draw (Critical Threat)",
             "badge": "Threat Spam",
             "badge_color": "danger",
-            "text": "URGENT! You have won £50000 cash prize or a holiday voucher! Call 08718726270 NOW to claim your guaranteed reward. T&C apply.",
+            "text": "URGENT PRIZE! You have won £50000 cash reward from Hammer Tech draw! Call 08718726270 NOW to claim your guaranteed reward.",
         },
         {
-            "title": "⚡ Oscorp Security Breach (Critical Phishing)",
+            "title": "⚠️ Rogue Ten Rings Cyber Override (Phishing Alert)",
             "badge": "Phishing Alert",
             "badge_color": "danger",
-            "text": "ALERT: Your Oscorp bank account #4928 is temporarily restricted due to suspicious logins. Verify immediately at http://secure-bank-login.xyz/verify",
+            "text": "CRITICAL SECURITY ALERT: Stark Industries executive account compromised. Re-authenticate Arc Reactor access key at http://stark-core-verify.xyz/auth immediately.",
         },
         {
-            "title": "🎓 Peter & Ned Leeds Project Chat (Clean Ham)",
+            "title": "🤖 F.R.I.D.A.Y. Autonomous Diagnostics (Clean Ham)",
             "badge": "Safe Ham",
             "badge_color": "success",
-            "text": "Hey man, did you finish training the Logistic Regression model for our physics lab? Bring the notebook tomorrow!",
+            "text": "Boss, all perimeter Logistic Regression weights are optimal. Gradient descent converged with 98.84% accuracy. Ready for presentation.",
         },
     ]
 

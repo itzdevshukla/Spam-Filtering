@@ -1,44 +1,45 @@
 {% extends "detector/base.html" %}
 {% load static %}
 
-{% block title %}SpamShield // Spidey-Sense Radar — Dev Shukla{% endblock %}
+{% block title %}SpamShield // Stark-Tech Defense — Abhiraj{% endblock %}
 
 {% block content %}
-<!-- Cinematic Spider-Man Hero Showcase Card -->
-<div class="cinematic-hero-card mb-4">
-    <img src="{% static 'detector/images/hero_spiderman.jpg' %}" alt="Spidey-Sense Cyber Shield" class="hero-backdrop-img">
-    <div class="hero-overlay-gradient"></div>
-    <div class="hero-content-layer w-100">
+<!-- Cinematic Iron Man Stark-Tech Hero Showcase Card -->
+<div class="cinematic-hero-card mb-4" style="background: linear-gradient(135deg, #120406 0%, #1f080b 45%, #050b17 100%); border-color: rgba(255,209,102,0.45); box-shadow: 0 20px 50px rgba(0,0,0,0.85), 0 0 35px rgba(255,209,102,0.25);">
+    <!-- High-Tech Stark HUD Ambient Grid Overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 80% 50%, rgba(255,209,102,0.18) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(0,240,255,0.15) 0%, transparent 50%), linear-gradient(rgba(255,209,102,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.02) 1px, transparent 1px); background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;"></div>
+    
+    <div class="hero-content-layer w-100" style="position: relative; z-index: 2;">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-4">
             <div style="max-width: 760px;">
                 <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
-                    <span class="badge bg-danger text-white font-monospace small px-2 py-1">
-                        <i class="bi bi-shield-lock-fill me-1"></i> SOLO ML DEFENSE
+                    <span class="badge bg-warning text-dark font-monospace small px-2 py-1" style="box-shadow: 0 0 10px rgba(255,209,102,0.5);">
+                        <i class="bi bi-shield-shaded me-1"></i> SOLO ML DEFENSE
                     </span>
-                    <span class="hero-author-tag">
-                        <i class="bi bi-person-fill text-danger"></i> ARCHITECT: DEV SHUKLA
+                    <span class="hero-author-tag" style="background: rgba(255,209,102,0.18); border-color: #ffd166; color: #fde047;">
+                        <i class="bi bi-person-fill text-warning"></i> ARCHITECT: ABHIRAJ
                     </span>
-                    <span class="badge bg-black border border-danger-subtle text-info font-monospace small px-2 py-1">
+                    <span class="badge bg-black border border-warning text-info font-monospace small px-2 py-1">
                         <i class="bi bi-cpu-fill text-info me-1"></i> LOGISTIC REGRESSION (SCRATCH & SCIKIT)
                     </span>
                 </div>
-                <h1 class="hero-glitch-title">
-                    SPIDEY-SENSE THREAT INTERCEPTOR
+                <h1 class="hero-glitch-title" style="text-shadow: 0 0 15px rgba(255,209,102,0.8), 0 0 35px rgba(255,0,60,0.4);">
+                    STARK-TECH THREAT INTERCEPTOR
                 </h1>
                 <p class="text-light small mb-3 hero-tagline" style="font-size: 1.05rem; line-height: 1.6; color: #cbd5e1 !important;">
-                    Autonomous Cyber-Arachnid perimeter defense engineered with <strong>Logistic Regression, Vectorized Gradient Descent</strong>, L2 Regularization, and 4,013 N-Gram TF-IDF features.
+                    Autonomous Mark-85 perimeter defense grid engineered with <strong>Logistic Regression, Vectorized Gradient Descent</strong>, L2 Regularization, and 4,013 N-Gram TF-IDF features.
                 </p>
                 <div class="d-flex align-items-center gap-2 text-warning fst-italic small">
                     <i class="bi bi-quote fs-5"></i>
-                    <span>"With great machine learning accuracy comes zero tolerance for spam."</span>
+                    <span>"Sometimes you gotta run before you can walk — Zero tolerance for spam."</span>
                 </div>
             </div>
             
             <!-- Real-Time Cockpit Telemetry Box -->
-            <div class="hero-cockpit-hud d-none d-md-flex flex-column gap-2 p-3 rounded-4" style="background: rgba(4, 7, 18, 0.88); border: 1.5px solid rgba(0, 240, 255, 0.45); backdrop-filter: blur(15px); min-width: 250px; box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);">
+            <div class="hero-cockpit-hud d-none d-md-flex flex-column gap-2 p-3 rounded-4" style="background: rgba(14, 6, 10, 0.92); border: 1.5px solid rgba(255, 209, 102, 0.5); backdrop-filter: blur(15px); min-width: 250px; box-shadow: 0 0 30px rgba(255, 209, 102, 0.25);">
                 <div class="d-flex justify-content-between align-items-center small font-monospace">
                     <span class="text-muted">SYSTEM STATUS:</span>
-                    <span class="text-danger fw-bold"><i class="bi bi-record-fill blink-dot text-danger"></i> ARMED</span>
+                    <span class="text-warning fw-bold"><i class="bi bi-record-fill blink-dot text-warning"></i> ARMED</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center small font-monospace">
                     <span class="text-muted">TEST ACCURACY:</span>
@@ -62,15 +63,15 @@
 </div>
 
 <div class="row justify-content-center">
-    <!-- Left Column: Input Form & Spider Intercept Presets -->
+    <!-- Left Column: Input Form & Presets -->
     <div class="col-lg-7 mb-4">
-        <div class="spidey-hud-panel mb-4">
+        <div class="spidey-hud-panel mb-4" style="border-color: rgba(255,209,102,0.3);">
             <div class="panel-header-hud">
                 <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-crosshair2 text-danger fs-4"></i>
-                    <span class="text-white">Web Threat Analyzer & Intercept Engine</span>
+                    <i class="bi bi-cpu-fill text-warning fs-4"></i>
+                    <span class="text-white">Stark Threat Analyzer & Intercept Engine</span>
                 </div>
-                <span class="badge-cyber-algo">
+                <span class="badge-cyber-algo" style="background: rgba(255,209,102,0.15); border-color: rgba(255,209,102,0.5); color: #fde047;">
                     <i class="bi bi-cpu-fill me-1"></i> LOGISTIC REGRESSION // L2 RIDGE
                 </span>
             </div>
@@ -80,7 +81,7 @@
                     <div class="mb-3">
                         <label for="message_text" class="form-label d-flex justify-content-between align-items-center flex-wrap gap-2">
                             <span class="text-white fw-bold font-monospace small" style="letter-spacing: 1px;">
-                                [ENTER SUSPICIOUS MESSAGE PAYLOAD]
+                                [ENTER SUSPICIOUS TRANSMISSION PAYLOAD]
                             </span>
                             <span class="small font-monospace text-light">
                                 Words: <strong id="wordCount" class="text-warning">0</strong> &bull; 
@@ -92,7 +93,7 @@
                             id="message_text" 
                             name="message_text" 
                             rows="5" 
-                            placeholder="Type or paste any SMS, email, or suspicious communication payload to activate Spidey-Sense analysis..."
+                            placeholder="Type or paste any SMS, email, or suspicious communication payload to activate F.R.I.D.A.Y. analysis..."
                             required
                         >{{ input_text }}</textarea>
                     </div>
@@ -101,7 +102,7 @@
                     <div class="mb-4">
                         <div class="d-flex justify-content-between align-items-center mb-2">
                             <span class="text-white small fw-bold font-monospace" style="letter-spacing: 1px;">
-                                <i class="bi bi-crosshair text-danger me-1"></i> SIMULATION RADAR TARGETS:
+                                <i class="bi bi-crosshair text-warning me-1"></i> SIMULATION RADAR TARGETS:
                             </span>
                             <span class="text-muted small font-monospace" style="font-size: 0.75rem;">SELECT TO INJECT</span>
                         </div>
@@ -127,8 +128,8 @@
                     </div>
 
                     <div class="d-flex gap-2 align-items-center pt-1">
-                        <button type="submit" class="btn btn-thwip flex-grow-1">
-                            <i class="bi bi-shield-shaded me-2"></i> Launch Spidey-Sense Scan
+                        <button type="submit" class="btn btn-thwip flex-grow-1" style="background: linear-gradient(135deg, #b91c1c 0%, #991b1b 50%, #d97706 100%); box-shadow: 0 8px 25px rgba(185, 28, 28, 0.45);">
+                            <i class="bi bi-lightning-charge-fill me-2"></i> Launch F.R.I.D.A.Y. Scan
                         </button>
                         {% if input_text %}
                         <a href="{% url 'index' %}" class="btn btn-spidey-reset" title="Reset Payload">
@@ -141,9 +142,9 @@
         </div>
 
         <!-- Academic Viva Insight Drawer -->
-        <div class="spidey-hud-panel p-4">
+        <div class="spidey-hud-panel p-4" style="border-color: rgba(255,209,102,0.3);">
             <h6 class="text-white fw-bold mb-3 d-flex align-items-center gap-2" style="font-family: var(--font-hud); font-size: 1.25rem; letter-spacing: 0.8px;">
-                <i class="bi bi-mortarboard-fill text-danger fs-4"></i> ACADEMIC VIVA LAB: LOGISTIC REGRESSION GROUNDING
+                <i class="bi bi-mortarboard-fill text-warning fs-4"></i> ACADEMIC VIVA LAB: LOGISTIC REGRESSION GROUNDING
             </h6>
             <div class="accordion accordion-flush" id="vivaAccordion">
                 <div class="accordion-item bg-transparent border-0 mb-2">
@@ -183,24 +184,29 @@
         <div class="spidey-hud-panel {% if result.is_spam %}result-card-threat{% else %}result-card-calm{% endif %} mb-4 p-4">
             <div class="d-flex justify-content-between align-items-start mb-3 gap-2">
                 <div class="d-flex align-items-center gap-3">
-                    <div style="width: 56px; height: 56px; border-radius: 14px; overflow: hidden; border: 2px solid {% if result.is_spam %}var(--spidey-red){% else %}var(--web-cyan){% endif %}; box-shadow: 0 0 25px {% if result.is_spam %}rgba(255,0,60,0.7){% else %}rgba(0,240,255,0.7){% endif %}; flex-shrink: 0;">
-                        <img src="{% static 'detector/images/spiderman_emblem.jpg' %}" alt="Spider-Man Emblem" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="width: 56px; height: 56px; border-radius: 14px; overflow: hidden; border: 2px solid {% if result.is_spam %}#dc2626{% else %}#00f0ff{% endif %}; box-shadow: 0 0 25px {% if result.is_spam %}rgba(220,38,38,0.7){% else %}rgba(0,240,255,0.7){% endif %}; flex-shrink: 0; background: #00141f;" class="d-flex align-items-center justify-content-center">
+                        <svg width="36" height="36" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="46" fill="none" stroke="#ffd166" stroke-width="5" />
+                            <circle cx="50" cy="50" r="36" fill="none" stroke="#00f0ff" stroke-width="4" stroke-dasharray="8 4" />
+                            <circle cx="50" cy="50" r="24" fill="#001824" stroke="#00f0ff" stroke-width="3" />
+                            <circle cx="50" cy="50" r="14" fill="#00f0ff" />
+                        </svg>
                     </div>
                     <div>
                         <span class="text-white small fw-bold font-monospace d-block mb-1" style="letter-spacing: 1px;">
-                            [RADAR DIAGNOSTIC TELEMETRY]
+                            [STARK TELEMETRY DIAGNOSTIC]
                         </span>
                         <h2 class="fw-bold mb-0 {% if result.is_spam %}text-danger{% else %}text-info{% endif %}" style="font-family: var(--font-hero); font-size: 1.35rem; letter-spacing: 1px;">
-                            {% if result.is_spam %}SPIDEY-SENSE TINGLING: SPAM{% else %}PETER TINGLE CALM: SAFE HAM{% endif %}
+                            {% if result.is_spam %}STARK INTRUSION DETECTED: SPAM{% else %}F.R.I.D.A.Y. VERIFIED: SAFE HAM{% endif %}
                         </h2>
                     </div>
                 </div>
-                <span class="badge {% if result.is_spam %}bg-danger{% else %}bg-info text-dark{% endif %} px-3 py-2 fs-6 rounded-pill font-monospace fw-bold">
+                <span class="badge {% if result.is_spam %}bg-danger{% else %}bg-warning text-dark{% endif %} px-3 py-2 fs-6 rounded-pill font-monospace fw-bold">
                     {{ result.risk_level }} RISK
                 </span>
             </div>
 
-            <!-- Animated Spider-Sense Threat Gauge -->
+            <!-- Animated Threat Gauge -->
             <div class="mb-4">
                 <div class="d-flex justify-content-between small text-white mb-2 font-monospace">
                     <span>Spam Threat Probability: <strong class="{% if result.is_spam %}text-danger{% else %}text-info{% endif %} fs-6">{{ result.spam_percentage }}%</strong></span>
@@ -239,11 +245,11 @@
                 </div>
             </div>
 
-            <!-- Explainability: Active Spider-Sense Threat Signals -->
+            <!-- Explainability: Active Signal Decomposition -->
             <div class="border-top border-secondary pt-3">
                 <div class="d-flex align-items-center justify-content-between mb-2">
                     <h6 class="text-white fw-bold mb-0" style="font-family: var(--font-hud); font-size: 1.15rem; letter-spacing: 0.8px;">
-                        <i class="bi bi-cpu text-danger me-1"></i> SPIDEY-SENSE SIGNAL DECOMPOSITION
+                        <i class="bi bi-cpu text-warning me-1"></i> STARK SIGNAL DECOMPOSITION
                     </h6>
                     <span class="text-info small font-monospace fw-bold">w_i &times; x_i</span>
                 </div>
@@ -283,21 +289,30 @@
             </div>
         </div>
         {% else %}
-        <!-- Standby State with Glowing Spider Emblem Hologram -->
-        <div class="spidey-hud-panel p-4 text-center">
+        <!-- Standby State with Rotating Arc Reactor Hologram -->
+        <div class="spidey-hud-panel p-4 text-center" style="border-color: rgba(255,209,102,0.35);">
             <div class="py-4">
-                <div class="hologram-avatar-box">
-                    <img src="{% static 'detector/images/spiderman_emblem.jpg' %}" alt="Spider-Man Emblem" class="hologram-inner-img">
+                <div class="hologram-avatar-box d-flex align-items-center justify-content-center" style="border-color: rgba(0,240,255,0.6); box-shadow: 0 0 35px rgba(0,240,255,0.4), inset 0 0 25px rgba(255,209,102,0.3); background: radial-gradient(circle, #001c29 0%, #000c14 100%);">
+                    <svg width="84" height="84" viewBox="0 0 100 100" class="hologram-inner-img">
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="#ffd166" stroke-width="5" />
+                        <circle cx="50" cy="50" r="36" fill="none" stroke="#00f0ff" stroke-width="4" stroke-dasharray="8 4" />
+                        <circle cx="50" cy="50" r="24" fill="#001824" stroke="#00f0ff" stroke-width="3" />
+                        <circle cx="50" cy="50" r="14" fill="#00f0ff" />
+                        <polygon points="50,18 54,28 46,28" fill="#ffd166" />
+                        <polygon points="50,82 54,72 46,72" fill="#ffd166" />
+                        <polygon points="18,50 28,46 28,54" fill="#ffd166" />
+                        <polygon points="82,50 72,46 72,54" fill="#ffd166" />
+                    </svg>
                 </div>
-                <h3 class="text-white fw-bold mb-2" style="font-family: var(--font-hero); letter-spacing: 1.5px; text-shadow: 0 0 20px rgba(255,0,60,0.7);">
-                    SPIDEY-SENSE RADAR ARMED
+                <h3 class="text-white fw-bold mb-2" style="font-family: var(--font-hero); letter-spacing: 1.5px; text-shadow: 0 0 20px rgba(255,209,102,0.7);">
+                    F.R.I.D.A.Y. DEFENSE GRID STANDBY
                 </h3>
                 <p class="text-light small max-w-sm mx-auto mt-2" style="line-height: 1.65; max-width: 420px;">
-                    Neural arachnid telemetry grid standing by. Inject any payload on the left or click a target simulation preset to evaluate spam log-odds and extract feature drivers.
+                    Stark Mark-85 telemetry matrix standing by. Inject any transmission payload on the left or click a simulation target to compute posterior spam probability via Logistic Regression.
                 </p>
                 <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap">
-                    <span class="badge bg-black border border-danger text-light px-3 py-2 font-monospace">
-                        <i class="bi bi-shield-check text-danger me-1"></i> 98.84% Test Accuracy
+                    <span class="badge bg-black border border-warning text-light px-3 py-2 font-monospace">
+                        <i class="bi bi-shield-check text-warning me-1"></i> 98.84% Test Accuracy
                     </span>
                     <span class="badge bg-black border border-info text-light px-3 py-2 font-monospace">
                         <i class="bi bi-cpu text-info me-1"></i> 4,013 Features (TF-IDF + Meta)
